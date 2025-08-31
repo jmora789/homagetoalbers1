@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homage to Albers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400&family=Oswald:wght@500&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Barlow', sans-serif;
+            font-size: 14pt;
+            background-color: #f3f4f6;
+            padding: 2vh 2vw;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        h1, h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(16pt, 4vw, 24pt);
+            text-transform: uppercase;
+            color: #000;
+        }
+        p {
+            font-size: clamp(12pt, 3vw, 14pt);
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 1rem;
+        }
+        .section-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        #albersCanvas {
+            border: 1px solid #e5e7eb;
+            background-color: #f9fafb;
+            border-radius: 0.5rem;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+            touch-action: none; /* Prevents default touch gestures like zoom */
+        }
+        .color-control-group {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-grow: 1;
+        }
+        .color-control-group label {
+            width: 80px;
+            flex-shrink: 0;
+        }
+        .color-control-group input[type="color"] {
+            width: 100%;
+            height: 40px;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Introduction Section -->
+        <div class="section-card">
+            <h1>Homage to Albers</h1>
+            <p>This module explores the principles of color interaction, inspired by the work of artist Josef Albers. Use the color selectors to change the squares and observe how colors change in relation to one another.</p>
+        </div>
+
+        <!-- Interactive Section -->
+        <div class="section-card flex flex-col md:flex-row items-center gap-6">
+            <!-- Canvas for drawing the squares -->
+            <div class="w-full md:w-3/5 aspect-square">
+                <canvas id="albersCanvas" class="w-full h-full"></canvas>
+            </div>
+
+            <!-- Color controls -->
+            <div class="w-full md:w-2/5 flex flex-col gap-4">
+                <div class="color-control-group">
+                    <label>Outer:</label>
+                    <input type="color" id="color1" value="#1d4ed8">
+                </div>
+                <div class="color-control-group">
+                    <label>Middle:</label>
+                    <input type="color" id="color2" value="#ef4444">
+                </div>
+                <div class="color-control-group">
+                    <label>Inner:</label>
+                    <input type="color" id="color3" value="#facc15">
+                </div>
+                <p class="text-sm italic text-gray-500">Notice how changing one color affects how you perceive the others.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DOM elements
+        const canvas = document.getElementById('albersCanvas');
+        const ctx = canvas.getContext('2d');
+        const colorInputs = [
+            document.getElementById('color1'),
+            document.getElementById('color2'),
+            document.getElementById('color3')
+        ];
+
+        // Function to draw the nested squares
+        function drawAlbersSquares() {
+            // Get the current dimensions of the canvas element
+            const canvasWidth = canvas.clientWidth;
+            const canvasHeight = canvas.clientHeight;
+            
+            // Update the canvas drawing surface to match the element's size
+            canvas.width = canvasWidth;
+            canvas.height = canvasHeight;
+
+            // Clear the canvas
+            ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+            // Get the current colors from the input fields
+            const colors = colorInputs.map(input => input.value);
+
+            // Calculate the size of the squares. We'll use a portion of the smaller dimension to keep it contained
+            const size = Math.min(canvasWidth, canvasHeight);
+            const outerSquareSize = size * 0.9;
+            const middleSquareSize = size * 0.6;
+            const innerSquareSize = size * 0.3;
+
+            // Calculate the starting position for each square to center them
+            const outerX = (canvasWidth - outerSquareSize) / 2;
+            const outerY = (canvasHeight - outerSquareSize) / 2;
+            const middleX = (canvasWidth - middleSquareSize) / 2;
+            const middleY = (canvasHeight - middleSquareSize) / 2;
+            const innerX = (canvasWidth - innerSquareSize) / 2;
+            const innerY = (canvasHeight - innerSquareSize) / 2;
+
+            // Draw the squares
+            // Outer Square
+            ctx.fillStyle = colors[0];
+            ctx.fillRect(outerX, outerY, outerSquareSize, outerSquareSize);
+
+            // Middle Square
+            ctx.fillStyle = colors[1];
+            ctx.fillRect(middleX, middleY, middleSquareSize, middleSquareSize);
+
+            // Inner Square
+            ctx.fillStyle = colors[2];
+            ctx.fillRect(innerX, innerY, innerSquareSize, innerSquareSize);
+        }
+
+        // Add event listeners
+        window.addEventListener('load', drawAlbersSquares);
+        window.addEventListener('resize', drawAlbersSquares);
+
+        colorInputs.forEach(input => {
+            input.addEventListener('input', drawAlbersSquares);
+        });
+
+        // Initial draw on page load
+        drawAlbersSquares();
+    </script>
+</body>
+</html>
