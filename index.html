@@ -19,9 +19,16 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            color: #333; /* Adjusted for better contrast on white background */
         }
-        h1, h2 {
-            font-family: 'Oswald', sans-serif;
+        h1 {
+            font-family: Arial, sans-serif;
+            font-size: 32px;
+            font-weight: bold;
+            color: #e91d63;
+        }
+        h2 {
+            font-family: Arial, sans-serif;
             font-size: clamp(16pt, 4vw, 24pt);
             text-transform: uppercase;
             color: #000;
@@ -67,25 +74,35 @@
             border-radius: 0.25rem;
             cursor: pointer;
         }
+        .button-primary {
+            background-color: #E91D63;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+        .button-primary:hover {
+            background-color: #d11a5a;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Introduction Section -->
         <div class="section-card">
             <h1>Homage to Albers</h1>
             <p>This module explores the principles of color interaction, inspired by the work of artist Josef Albers. Use the color selectors to change the squares and observe how colors change in relation to one another.</p>
         </div>
 
-        <!-- Interactive Section -->
         <div class="section-card flex flex-col md:flex-row items-center gap-6">
-            <!-- Canvas for drawing the squares -->
             <div class="w-full md:w-3/5 aspect-square">
                 <canvas id="albersCanvas" class="w-full h-full"></canvas>
             </div>
 
-            <!-- Color controls -->
             <div class="w-full md:w-2/5 flex flex-col gap-4">
                 <div class="color-control-group">
                     <label>Outer:</label>
@@ -101,6 +118,12 @@
                 </div>
                 <p class="text-sm italic text-gray-500">Notice how changing one color affects how you perceive the others.</p>
             </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="https://www.jennifermora.com/portfolio" target="_blank">
+                <button class="button-primary">Return to Portfolio</button>
+            </a>
         </div>
     </div>
 
