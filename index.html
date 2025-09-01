@@ -6,7 +6,7 @@
     <title>Homage to Albers</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400&family=Oswald:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -22,19 +22,27 @@
             color: #333; /* Adjusted for better contrast on white background */
         }
         h1 {
-            font-family: Arial, sans-serif;
+            font-family: 'Oswald', sans-serif; /* Changed to Oswald */
             font-size: 32px;
-            font-weight: bold;
+            font-weight: 700;
             color: #e91d63;
+            margin-bottom: 0.5rem; /* Reduced margin */
+            text-align: center; /* Centered the h1 */
         }
         h2 {
-            font-family: Arial, sans-serif;
-            font-size: clamp(16pt, 4vw, 24pt);
+            font-family: 'Oswald', sans-serif; /* Changed to Oswald */
+            font-size: 24px;
+            font-weight: 700;
             text-transform: uppercase;
-            color: #000;
+            color: #e91d63; /* Use the same brand color as the other pages */
+            text-align: center;
         }
         p {
+            font-family: 'Barlow', sans-serif;
             font-size: clamp(12pt, 3vw, 14pt);
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto; /* Centered the paragraph */
         }
         .container {
             max-width: 1000px;
