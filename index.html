@@ -26,7 +26,6 @@
             font-size: 32pt;
             font-weight: 700;
             color: #e91d63;
-            margin-bottom: 0.5rem;
             text-align: center;
         }
         h2 {
@@ -64,6 +63,8 @@
             border-radius: 0.5rem;
             box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
             touch-action: none;
+            width: 100%;
+            height: 100%;
         }
         .color-control-group {
             display: flex;
@@ -77,7 +78,7 @@
         }
         .color-control-group input[type="color"] {
             width: 100%;
-            height: 20px; /* Adjusted size */
+            height: 20px;
             border: none;
             border-radius: 0.25rem;
             cursor: pointer;
@@ -103,15 +104,17 @@
     <div class="container">
         <div class="section-card">
             <h1>Homage to Albers</h1>
-            <p>This module explores the principles of color interaction, inspired by the work of artist Josef Albers. Use the color selectors to change the squares and observe how colors change in relation to one another.</p>
+            <p style="margin-top: 1.5rem; margin-bottom: 2rem;">
+                This module explores the principles of color interaction, inspired by the work of artist Josef Albers. Use the color selectors to change the squares and observe how colors change in relation to one another.
+            </p>
         </div>
 
         <div class="section-card flex flex-col md:flex-row items-center gap-6">
-            <div class="w-full md:w-3/5 aspect-square">
-                <canvas id="albersCanvas" class="w-full h-full"></canvas>
+            <div class="w-full md:w-2/5" style="aspect-ratio: 1 / 1;">
+                <canvas id="albersCanvas"></canvas>
             </div>
 
-            <div class="w-full md:w-2/5 flex flex-col gap-4">
+            <div class="w-full md:w-3/5 flex flex-col gap-4">
                 <div class="color-control-group">
                     <label>Outer:</label>
                     <input type="color" id="color1" value="#1d4ed8">
