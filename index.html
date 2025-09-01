@@ -27,7 +27,7 @@
             font-weight: 700;
             color: #e91d63;
             text-align: center;
-            margin-bottom: 2.5rem; /* Increased margin for more space */
+            margin-bottom: 2.5rem;
         }
         h2 {
             font-family: 'Oswald', sans-serif;
@@ -49,7 +49,7 @@
             display: flex;
             flex-direction: column;
             gap: 2rem;
-            padding: 1rem;
+            padding: 2rem;
         }
         .section-card {
             background-color: white;
@@ -76,12 +76,13 @@
         .color-control-group label {
             width: 80px;
             flex-shrink: 0;
+            text-align: right;
         }
         .color-control-group input[type="color"] {
-            width: 80px; /* Narrowed width of the color input */
-            height: 20px;
+            width: 40px;
+            height: 40px;
             border: none;
-            border-radius: 0.25rem;
+            border-radius: 50%;
             cursor: pointer;
         }
         .button-primary {
@@ -98,6 +99,23 @@
         .button-primary:hover {
             background-color: #d11a5a;
         }
+
+        .description-container {
+            background-color: #f0f0f0;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            max-width: 250px;
+        }
+        
+        .description-text p {
+            font-family: 'Barlow', sans-serif;
+            font-size: clamp(14pt, 3.5vw, 16pt);
+            line-height: 1.6;
+            color: #333;
+            text-align: center;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -110,25 +128,32 @@
             </p>
         </div>
 
-        <div class="section-card flex flex-col md:flex-row items-center gap-6">
+        <div class="section-card flex flex-col md:flex-row items-start md:items-center gap-6">
             <div class="w-full md:w-2/5" style="aspect-ratio: 1 / 1;">
                 <canvas id="albersCanvas"></canvas>
             </div>
 
-            <div class="w-full md:w-3/5 flex flex-col gap-4">
-                <div class="color-control-group">
-                    <label>Outer:</label>
-                    <input type="color" id="color1" value="#1d4ed8">
+            <div class="w-full md:w-3/5 flex flex-col md:flex-row md:items-center md:justify-between">
+                <div class="flex flex-col gap-4">
+                    <div class="color-control-group">
+                        <label>Outer:</label>
+                        <input type="color" id="color1" value="#1d4ed8">
+                    </div>
+                    <div class="color-control-group">
+                        <label>Middle:</label>
+                        <input type="color" id="color2" value="#ef4444">
+                    </div>
+                    <div class="color-control-group">
+                        <label>Inner:</label>
+                        <input type="color" id="color3" value="#facc15">
+                    </div>
                 </div>
-                <div class="color-control-group">
-                    <label>Middle:</label>
-                    <input type="color" id="color2" value="#ef4444">
+                <div class="flex flex-grow justify-center items-center"> <div class="description-container">
+                        <div class="description-text">
+                            <p>Notice how changing one color affects how you perceive the others.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="color-control-group">
-                    <label>Inner:</label>
-                    <input type="color" id="color3" value="#facc15">
-                </div>
-                <p class="text-sm italic text-gray-500">Notice how changing one color affects how you perceive the others.</p>
             </div>
         </div>
 
